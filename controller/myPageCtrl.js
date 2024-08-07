@@ -4,6 +4,10 @@ const pool = require('../DB/db');
 exports.getMyPage = async (req, res) => {
   try{
     const user = req.session.user
+    if(!user){
+      console.log("세션 사라짐")
+    }
+    else{
     const myPageDataQ = 'SELECT * FROM user WHERE user_id =?';
     const cardDataQ = 'SELECT * FROM card WHERE user_user_id = ?';
     const addrDataQ = 'SELECT * FROM address WHERE user_user_id = ?';
@@ -11,7 +15,7 @@ exports.getMyPage = async (req, res) => {
     const myPageDataR = await pool.query(myPageDataQ, [user]);
     const cardDataR = await pool.query(cardDataQ, [user]);
     const addrDataR = await pool.query(addrDataQ, [user]);
-    res.send([myPageDataR[0], cardDataR[0], addrDataR[0]]);
+    res.send([myPageDataR[0], cardDataR[0], addrDataR[0]]);}
   }
   catch(err){
     console.error(err)
