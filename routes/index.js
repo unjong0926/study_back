@@ -8,12 +8,16 @@ const myPageCtrl = require("../controller/myPageCtrl.js");
 const cartCtrl = require("../controller/cartCtrl.js");
 const orderCtrl = require("../controller/orderCtrl.js");
 const orderPageCtrl = require("../controller/orderPageCtrl.js")
+const logoutCtrl = require("../controller/logoutCtrl.js")
 
 //회원가입 라우터
 router.post('/sign_up', signUpCtrl.post_UserInfo);
 
 //로그인 라우터
 router.post("/login", loginCtrl.post_Login);
+
+//로그아웃 라우터
+router.post("/logout", logoutCtrl.postLogout)
 
 //도서정보 라우터
 router.get("/book", bookCtrl.get_Book);
