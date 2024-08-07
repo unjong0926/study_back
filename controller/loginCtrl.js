@@ -12,7 +12,6 @@ exports.post_Login = async(req, res) =>{
   if(userCheckR[0].length>0){
     login.state = "로그인이 완료되었습니다.";
     req.session.user = userID;
-    
     req.session.save()
     res.json({login: login});
   }
