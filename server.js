@@ -4,6 +4,7 @@ const indexRouter = require('./routes/index'); //라우터 폴더와 연동
 const cors = require('cors'); //통신 미들웨어 선언
 const session = require('express-session');
 const bodyParser = require('body-parser')
+const sessionStore = require('./DB/session');
 
 
 app.use(express.json()) //바디 파서 사용
@@ -17,8 +18,9 @@ app.use(cors({
 
 app.use(session({
   secret: 'your_secret_key', // 세션 암호화를 위한 비밀 키
-  resave: false, // 세션이 수정되지 않아도 세션을 다시 저장할지 여부
-  saveUninitialized: true, // 초기화되지 않은 세션을 저장할지 여부
+  resave: true, // 세션이 수정되지 않아도 세션을 다시 저장할지 여부
+  saveUninitialized: false, // 초기화되지 않은 세션을 저장할지 여부
+  store: sessionStore,
   cookie: { secure: false } // HTTPS를 사용할 경우 true로 설정
 }));
 
