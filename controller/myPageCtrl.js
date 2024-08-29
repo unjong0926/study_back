@@ -11,11 +11,13 @@ exports.getMyPage = async (req, res) => {
     const myPageDataQ = 'SELECT * FROM user WHERE user_id =?';
     const cardDataQ = 'SELECT * FROM card WHERE user_user_id = ?';
     const addrDataQ = 'SELECT * FROM address WHERE user_user_id = ?';
+    const cpnDataQ = 'SELECT * FROM coupon A INNER JOIN coupon_list B on A.coupon_id = B.coupon_coupon_id WHERE user_user_id = ? and coupon_usetype = "X"'
     
     const myPageDataR = await pool.query(myPageDataQ, [user]);
     const cardDataR = await pool.query(cardDataQ, [user]);
     const addrDataR = await pool.query(addrDataQ, [user]);
-    res.send([myPageDataR[0], cardDataR[0], addrDataR[0]]);}
+    const cpnDataR = await pool.query(cpnDataQ, [user])
+    res.send([myPageDataR[0], cardDataR[0], addrDataR[0],cpnDataR[0]]);}
   }
   catch(err){
     console.error(err)

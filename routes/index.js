@@ -9,6 +9,10 @@ const cartCtrl = require("../controller/cartCtrl.js");
 const orderCtrl = require("../controller/orderCtrl.js");
 const orderPageCtrl = require("../controller/orderPageCtrl.js")
 const logoutCtrl = require("../controller/logoutCtrl.js")
+const couponCtrl = require("../controller/couponCtrl.js")
+
+//메인 쿠폰 받는 라우터
+router.post('/', couponCtrl.postCoupon)
 
 //회원가입 라우터
 router.post('/sign_up', signUpCtrl.post_UserInfo);
