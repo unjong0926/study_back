@@ -10,6 +10,7 @@ const orderCtrl = require("../controller/orderCtrl.js");
 const orderPageCtrl = require("../controller/orderPageCtrl.js")
 const logoutCtrl = require("../controller/logoutCtrl.js")
 const couponCtrl = require("../controller/couponCtrl.js")
+const monthlySales = require("../controller/monthlySales.js")
 
 //메인 쿠폰 받는 라우터
 router.post('/', couponCtrl.postCoupon)
@@ -44,5 +45,9 @@ router.post('/order', orderCtrl.postOrder)
 
 //주문내역 페이지 라우터
 router.get('/order_page', orderPageCtrl.getList)
+
+//판매량 라우터
+router.get('/sales', monthlySales.get_monthly)
+router.post('/sales', monthlySales.post_monthly)
 
 module.exports = router;
